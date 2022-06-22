@@ -1,15 +1,20 @@
-import {Routes} from 'react-router-dom';
+import { Navigate,Routes, Route} from 'react-router-dom';
 import { LoginPage } from '../auth/pages/LoginPage';
 import { DCpage } from '../heroes/pages/DCpage';
 import { MarvelPage } from '../heroes/pages/MarvelPage';
+import { Navbar } from '../UI';
 
 export const AppRouter = () => {
   return (
-    <Routes>
-      <Route path="marvel" element={<MarvelPage/>}/>
-      <Routes path="dc" element={<DCpage/>}/>
-      <Routes path="login" element={<LoginPage/>}/>
-    </Routes>
-    
+    <>
+      <Navbar/>
+
+      <Routes>
+        <Route path="marvel" element={<MarvelPage/>}/>
+        <Route path="dc" element={<DCpage/>}/>
+        <Route path="login" element={<LoginPage/>}/>
+        <Route path="/" element={<Navigate to="marvel" />}/>
+      </Routes>
+    </>
   )
 }
