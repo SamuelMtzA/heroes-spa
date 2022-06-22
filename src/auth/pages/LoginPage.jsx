@@ -1,7 +1,21 @@
-import React from 'react'
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
+  const navigateTo = useNavigate();
+  const handleLogin = () => {
+    navigateTo("/",{
+      replace: true
+    });
+  };
+
   return (
-    <div>LoginPage</div>
-  )
-}
+    <div className="container mt-5">
+      <h1>Login</h1>
+      <hr />
+      <button onClick={handleLogin} className="btn btn-primary">
+        Login
+      </button>
+    </div>
+  );
+};
