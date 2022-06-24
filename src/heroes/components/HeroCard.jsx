@@ -13,14 +13,14 @@ export const HeroCard = ({
   const charactersByHero = (<p>{characters}</p>);
 
   return (
-    <div className="col">
+    <div className="col animate__animated animate__bounce animate__fadeIn">
       <div className="card">
         <div className="row no-gutters">
-          <div className="col-4">
-            <img src={heroImageUrl} className="card-img" alt={superhero} />
+          <div className="col-4 animate__animated animate__fadeInUp">
+            <img src={heroImageUrl} className="card-img animate__animated animate__bounce animate__fadeInLeft" alt={superhero} />
           </div>
           <div className="col-8">
-            <div className="card-body">
+            <div className="card-body animate__animated animate__wobble">
               <h5 className="card-title">{superhero}</h5>
               <p className="card-text">{alter_ego}</p>
               {
