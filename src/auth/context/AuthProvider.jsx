@@ -3,23 +3,32 @@ import { types } from "../types/types";
 import { AuthContext } from "./AuthContext";
 import { authReducer } from "./authReducer";
 //read from the local storage
-const initialState = {
-  logged: false,
-};
+const initStorage = () => {
+  const storeUser = JSON.parse(localStorage.getItem("user"));
+
+  return {
+    user: storeUser,
+    logged: !!storeUser,
+  }
+}
+
+console.log(initStorage());
 
 export const AuthProvider = ({ children }) => {
-  const [authState, dispatch] = useReducer(authReducer, initialState);
+  const [authState, dispatch] = useReducer(authReducer, {}, initStorage);
 
   const login = ( name="" ) => {
+    const user = {
+      id: '123',
+      name: name,
+    }
     const action = {
       type: types.login,
-      payload: {
-        id: '123',
-        name: name,
-      }
+      payload: user
     }
 
     dispatch(action);
+    localStorage.setItem("user", JSON.stringify(user));
   }
 
   return (
