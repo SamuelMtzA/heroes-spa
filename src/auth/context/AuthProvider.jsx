@@ -12,27 +12,33 @@ const initStorage = () => {
   }
 }
 
-console.log(initStorage());
+// console.log(initStorage());
 
 export const AuthProvider = ({ children }) => {
   const [authState, dispatch] = useReducer(authReducer, {}, initStorage);
 
   const login = ( name="" ) => {
-    const user = {
-      id: '123',
-      name: name,
-    }
-    const action = {
-      type: types.login,
-      payload: user
-    }
+    const user = { id: '123', name: name }
+    const action = {type: types.login, payload: user }
 
     dispatch(action);
     localStorage.setItem("user", JSON.stringify(user));
   }
 
+  const logout = () => {
+    const action = {type: types.logout}
+    dispatch(action);
+    localStorage.removeItem("user");
+  }
+
+  console.log(authState);
   return (
-    <AuthContext.Provider value={{ ...authState, login: login}}>
+    <AuthContext.Provider value={{ 
+      //properties to be shared
+      ...authState, 
+      //methods or functions
+      login, logout}
+      }>
       {children}
     </AuthContext.Provider>
   ) 
