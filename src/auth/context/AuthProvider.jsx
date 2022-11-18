@@ -12,8 +12,6 @@ const initStorage = () => {
   }
 }
 
-// console.log(initStorage());
-
 export const AuthProvider = ({ children }) => {
   const [authState, dispatch] = useReducer(authReducer, {}, initStorage);
 
